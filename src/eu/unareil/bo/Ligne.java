@@ -33,6 +33,10 @@ public class Ligne {
         return produit;
     }
 
+    public double getPrix() {
+        return this.getQuantite() * this.getProduit().getPrixUnitaire();
+    }
+
 
     public void setProduit(Produit produit) {
         this.produit = produit;
@@ -45,8 +49,9 @@ public class Ligne {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Ligne{");
-        sb.append("quantite=").append(quantite);
-        sb.append(", produit=").append(produit);
+        sb.append("produit=").append(this.getProduit());
+        sb.append(", quantite=").append(this.getQuantite());
+        sb.append(", prix=").append(this.getPrix());
         sb.append('}');
         return sb.toString();
     }

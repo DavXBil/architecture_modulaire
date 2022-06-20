@@ -4,21 +4,21 @@ import java.time.LocalDate;
 
 public class Pain extends ProduitPerissable{
 
-    float poids;
+    private float poids;
 
     public Pain(LocalDate datLimiteConso, float poids) {
         super(datLimiteConso);
-        this.poids = poids;
+        this.setPoids(poids);
     }
 
     public Pain(long refProd, String marque, String libelle, float poids , long qteStock, float prixUnitaire) {
         super(refProd, LocalDate.now().plusDays(2), marque, libelle, qteStock, prixUnitaire);
-        this.poids = poids;
+        this.setPoids(poids);
     }
 
     public Pain( String marque, String libelle, float poids, long qteStock, float prixUnitaire) {
         super( LocalDate.now().plusDays(2), marque, libelle, qteStock, prixUnitaire);
-        this.poids = poids;
+        this.setPoids(poids);
     }
 
     public float getPoids() {
@@ -32,13 +32,12 @@ public class Pain extends ProduitPerissable{
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Pain{");
-        sb.append(", libelle='").append(libelle).append('\'');
-        sb.append(", marque='").append(marque).append('\'');
-        sb.append(", prixUnitaire=").append(prixUnitaire);
-        sb.append(", qteStock=").append(qteStock);
-        sb.append(", datLimiteConso=").append(datLimiteConso);
-        sb.append(", refProd=").append(refProd);
-        sb.append("poids=").append(poids);
+        sb.append(", libelle='").append(this.getLibelle()).append('\'');
+        sb.append(", marque='").append(this.getMarque()).append('\'');
+        sb.append(", prixUnitaire=").append(this.getPrixUnitaire());
+        sb.append(", qteStock=").append(this.getQteStock());
+        sb.append(", datLimiteConso=").append(this.getDatLimiteConso());
+        sb.append("poids=").append(this.getPoids());
         sb.append('}');
         return sb.toString();
     }

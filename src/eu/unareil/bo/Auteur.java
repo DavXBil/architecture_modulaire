@@ -2,9 +2,9 @@ package eu.unareil.bo;
 
 public class Auteur {
 
-    long id;
-    String prenom;
-    String nom;
+    private long id;
+    private String prenom;
+    private String nom;
 
 
 

@@ -6,24 +6,24 @@ import java.util.List;
 public class CartePostale extends Produit {
 
     private TypeCartePostale typeCartePostale;
-    private List<Auteur> auteur = new ArrayList<Auteur>();
+    private List<Auteur> auteurs = new ArrayList<Auteur>();
 
-    public CartePostale(TypeCartePostale typeCartePostale, List<Auteur> auteur) {
+    public CartePostale(TypeCartePostale typeCartePostale, List<Auteur> auteurs) {
         this.typeCartePostale = typeCartePostale;
-        this.auteur = auteur;
+        this.auteurs = auteurs;
     }
 
 
-    public CartePostale(long refProd, String marque, String libelle, long qteStock, float prixUnitaire, List<Auteur> auteur, TypeCartePostale typeCartePostale) {
+    public CartePostale(long refProd, String marque, String libelle, long qteStock, float prixUnitaire, List<Auteur> auteurs, TypeCartePostale typeCartePostale) {
         super(refProd, libelle, marque, qteStock, prixUnitaire);
         this.typeCartePostale = typeCartePostale;
-        this.auteur = auteur;
+        this.auteurs = auteurs;
     }
 
-    public CartePostale(String marque, String libelle, long qteStock, float prixUnitaire, List<Auteur> auteur, TypeCartePostale typeCartePostale ) {
+    public CartePostale(String marque, String libelle, long qteStock, float prixUnitaire, List<Auteur> auteurs, TypeCartePostale typeCartePostale ) {
         super(marque, libelle, qteStock, prixUnitaire);
         this.typeCartePostale = typeCartePostale;
-        this.auteur = auteur;
+        this.auteurs = auteurs;
     }
 
     public TypeCartePostale getTypeCartePostale() {
@@ -37,11 +37,14 @@ public class CartePostale extends Produit {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("CartePostale{");
-        sb.append(", libelle='").append(libelle).append('\'');
-        sb.append(", marque='").append(marque).append('\'');
-        sb.append(", prixUnitaire=").append(prixUnitaire);
-        sb.append(", qteStock=").append(qteStock);
-        sb.append(", auteur=").append(auteur);
+        sb.append(", libelle='").append(this.getLibelle()).append('\'');
+        sb.append(", marque='").append(this.getMarque()).append('\'');
+        sb.append(", prixUnitaire=").append(this.getPrixUnitaire());
+        sb.append(", qteStock=").append(this.getQteStock());
+        sb.append(", auteur=");
+        for (Auteur auteur : auteurs) {
+            sb.append(auteur.getNom()).append(" ").append(auteur.getPrenom()).append(", ");
+        }
         sb.append("typeCartePostale=").append(typeCartePostale);
         sb.append('}');
         return sb.toString();

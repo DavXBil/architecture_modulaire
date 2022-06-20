@@ -31,7 +31,7 @@ public class Achat {
     }
 
     public void modifieLigne(int index, int nouvQuantite) {
-        lignes.add(new Ligne(lignes.get(index).getProduit(), nouvQuantite));
+        lignes.get(index).setQuantite(nouvQuantite);
     }
 
     public void supprimeLigne(int index) {
@@ -61,7 +61,9 @@ public class Achat {
         DecimalFormat format = new DecimalFormat("0.00");
 
         final StringBuilder sb = new StringBuilder("Achat{");
-        sb.append(", lignes=").append(lignes);
+        sb.append(", lignes=").append(this.getLignes()).append('\n');
+
+
         sb.append("Total de l'achat : ").append(format.format(calculMontant())).append("€");
         sb.append('}');
         return sb.toString();

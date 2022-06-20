@@ -2,14 +2,15 @@ package eu.unareil.bo;
 
 public class Produit {
 
-    long refProd;
-    String marque;
-    String libelle;
-    long qteStock;
-    float prixUnitaire;
+    private long refProd;
+    private String marque;
+    private String libelle;
+    private long qteStock;
+    private float prixUnitaire;
 
 
     public Produit () {
+        super();
     }
 
     public Produit(long refProd, String marque, String libelle, long qteStock, float prixUnitaire) {

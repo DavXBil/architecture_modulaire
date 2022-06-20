@@ -7,17 +7,17 @@ public class ProduitPerissable extends Produit {
     LocalDate datLimiteConso;
 
     public ProduitPerissable(LocalDate datLimiteConso) {
-        this.datLimiteConso = datLimiteConso;
+        this.setDatLimiteConso(datLimiteConso);
     }
 
     public ProduitPerissable(long refProd, LocalDate datLimiteConso, String marque, String libelle, long qteStock, float prixUnitaire ) {
         super(refProd, marque, libelle, qteStock, prixUnitaire);
-        this.datLimiteConso = datLimiteConso;
+        this.setDatLimiteConso(datLimiteConso);
     }
 
     public ProduitPerissable( LocalDate datLimiteConso, String marque, String libelle, long qteStock, float prixUnitaire) {
         super(marque, libelle, qteStock, prixUnitaire);
-        this.datLimiteConso = datLimiteConso;
+        this.setDatLimiteConso(datLimiteConso);
     }
 
     public LocalDate getDatLimiteConso() {
@@ -31,12 +31,11 @@ public class ProduitPerissable extends Produit {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("ProduitPerissable{");
-        sb.append("datLimiteConso=").append(datLimiteConso);
-        sb.append(", refProd=").append(refProd);
-        sb.append(", libelle='").append(libelle).append('\'');
-        sb.append(", marque='").append(marque).append('\'');
-        sb.append(", prixUnitaire=").append(prixUnitaire);
-        sb.append(", qteStock=").append(qteStock);
+        sb.append("datLimiteConso=").append(this.getDatLimiteConso());
+        sb.append(", libelle='").append(this.getLibelle()).append('\'');
+        sb.append(", marque='").append(this.getMarque()).append('\'');
+        sb.append(", prixUnitaire=").append(this.getPrixUnitaire());
+        sb.append(", qteStock=").append(this.getQteStock());
         sb.append('}');
         return sb.toString();
     }
