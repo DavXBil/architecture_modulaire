@@ -39,7 +39,7 @@ public class CartePostale extends Produit {
         final StringBuilder sb = new StringBuilder("CartePostale{");
         sb.append(", libelle='").append(this.getLibelle()).append('\'');
         sb.append(", marque='").append(this.getMarque()).append('\'');
-        sb.append(", prixUnitaire=").append(this.getPrixUnitaire());
+        sb.append(", prixUnitaire=").append(this.getPrixUnitaire()).append("€");
         sb.append(", qteStock=").append(this.getQteStock());
         sb.append(", auteur=");
         for (Auteur auteur : auteurs) {

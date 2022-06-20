@@ -1,6 +1,8 @@
 package eu.unareil.bo;
 
+import java.text.DecimalFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Pain extends ProduitPerissable{
 
@@ -31,13 +33,17 @@ public class Pain extends ProduitPerissable{
 
     @Override
     public String toString() {
+
+        DateTimeFormatter formDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DecimalFormat decimalFormat = new DecimalFormat("0.00");
+
         final StringBuilder sb = new StringBuilder("Pain{");
         sb.append(", libelle='").append(this.getLibelle()).append('\'');
         sb.append(", marque='").append(this.getMarque()).append('\'');
-        sb.append(", prixUnitaire=").append(this.getPrixUnitaire());
+        sb.append(", prixUnitaire=").append(decimalFormat.format(this.getPrixUnitaire())).append("€");
         sb.append(", qteStock=").append(this.getQteStock());
-        sb.append(", datLimiteConso=").append(this.getDatLimiteConso());
-        sb.append("poids=").append(this.getPoids());
+        sb.append("datLimiteConso=").append(this.getDatLimiteConso().format(formDate));
+        sb.append(", poids=").append(this.getPoids());
         sb.append('}');
         return sb.toString();
     }

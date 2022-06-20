@@ -1,6 +1,8 @@
 package eu.unareil.bo;
 
+import java.text.DecimalFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Glace extends ProduitPerissable{
 
@@ -45,13 +47,17 @@ public class Glace extends ProduitPerissable{
 
     @Override
     public String toString() {
+
+        DateTimeFormatter formDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DecimalFormat decimalFormat = new DecimalFormat("0.00");
+
         final StringBuilder sb = new StringBuilder("Glace{");
         sb.append(", libelle='").append(this.getLibelle()).append('\'');
         sb.append(", marque='").append(this.getMarque()).append('\'');
-        sb.append(", prixUnitaire=").append(this.getPrixUnitaire());
+        sb.append(", prixUnitaire=").append(this.getPrixUnitaire()).append("€");
         sb.append(", qteStock=").append(this.getQteStock());
-        sb.append(", datLimiteConso=").append(this.getDatLimiteConso());
-        sb.append("parfum='").append(this.getParfum()).append('\'');
+        sb.append("datLimiteConso=").append(this.getDatLimiteConso().format(formDate));
+        sb.append(", parfum='").append(this.getParfum()).append('\'');
         sb.append(", temperatureConservation=").append(this.getTemperatureConservation());
         sb.append('}');
         return sb.toString();

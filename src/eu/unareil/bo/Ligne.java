@@ -1,5 +1,7 @@
 package eu.unareil.bo;
 
+import java.text.DecimalFormat;
+
 public class Ligne {
 
     private int index;
@@ -17,6 +19,7 @@ public class Ligne {
     }
 
     public Ligne( int index, int quantite, Produit produit) {
+        this.setId(index);
         this.setQuantite(quantite);
         this.setProduit(produit);
     }
@@ -48,10 +51,14 @@ public class Ligne {
 
     @Override
     public String toString() {
+
+        DecimalFormat decimalFormat = new DecimalFormat("0.00");
+
+
         final StringBuilder sb = new StringBuilder("Ligne{");
-        sb.append("produit=").append(this.getProduit());
+        sb.append(" produit=").append(this.getProduit());
         sb.append(", quantite=").append(this.getQuantite());
-        sb.append(", prix=").append(this.getPrix());
+        sb.append(", prix=").append(decimalFormat.format(this.getPrix())).append("€");
         sb.append('}');
         return sb.toString();
     }

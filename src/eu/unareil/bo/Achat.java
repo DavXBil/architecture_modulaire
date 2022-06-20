@@ -63,7 +63,6 @@ public class Achat {
         final StringBuilder sb = new StringBuilder("Achat{");
         sb.append(", lignes=").append(this.getLignes()).append('\n');
 
-
         sb.append("Total de l'achat : ").append(format.format(calculMontant())).append("€");
         sb.append('}');
         return sb.toString();

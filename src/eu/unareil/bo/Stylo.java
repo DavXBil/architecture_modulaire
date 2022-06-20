@@ -1,5 +1,7 @@
 package eu.unareil.bo;
 
+import java.text.DecimalFormat;
+
 public class Stylo extends Produit{
 
     private String couleur;
@@ -41,12 +43,15 @@ public class Stylo extends Produit{
 
     @Override
     public String toString() {
+
+        DecimalFormat format = new DecimalFormat("0.00");
+
         final StringBuilder sb = new StringBuilder("Stylo{");
         sb.append(", libelle='").append(this.getLibelle()).append('\'');
         sb.append(", marque='").append(this.getMarque()).append('\'');
-        sb.append(", prixUnitaire=").append(this.getPrixUnitaire());
+        sb.append(", prixUnitaire=").append(format.format(this.getPrixUnitaire())).append("€");
         sb.append(", qteStock=").append(this.getQteStock());
-        sb.append("couleur='").append(this.getCouleur()).append('\'');
+        sb.append(", couleur='").append(this.getCouleur()).append('\'');
         sb.append(", typeMine='").append(this.getTypeMine()).append('\'');
         sb.append('}');
         return sb.toString();
