@@ -6,18 +6,19 @@ public class Stylo extends Produit{
     String typeMine;
 
 
-    public Stylo() {
-        super();
-    }
-
-    public Stylo(long refProd, String libelle, String marque, float prixUnitaire, long qteStock, String couleur, String typeMine) {
-        super(refProd, libelle, marque, prixUnitaire, qteStock);
+    public Stylo(String couleur, String typeMine) {
         this.couleur = couleur;
         this.typeMine = typeMine;
     }
 
-    public Stylo(String libelle, String marque, float prixUnitaire, long qteStock, String couleur, String typeMine) {
-        super(libelle, marque, prixUnitaire, qteStock);
+    public Stylo(long refProd, String marque, String libelle, long qteStock, float prixUnitaire, String couleur, String typeMine) {
+        super(refProd, marque, libelle, qteStock, prixUnitaire);
+        this.couleur = couleur;
+        this.typeMine = typeMine;
+    }
+
+    public Stylo(String marque, String libelle, long qteStock, float prixUnitaire, String couleur, String typeMine) {
+        super(marque, libelle, qteStock, prixUnitaire);
         this.couleur = couleur;
         this.typeMine = typeMine;
     }
@@ -41,13 +42,12 @@ public class Stylo extends Produit{
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Stylo{");
-        sb.append("couleur='").append(couleur).append('\'');
-        sb.append(", typeMine='").append(typeMine).append('\'');
-        sb.append(", refProd=").append(refProd);
         sb.append(", libelle='").append(libelle).append('\'');
         sb.append(", marque='").append(marque).append('\'');
         sb.append(", prixUnitaire=").append(prixUnitaire);
         sb.append(", qteStock=").append(qteStock);
+        sb.append("couleur='").append(couleur).append('\'');
+        sb.append(", typeMine='").append(typeMine).append('\'');
         sb.append('}');
         return sb.toString();
     }

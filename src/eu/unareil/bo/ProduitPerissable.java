@@ -6,17 +6,17 @@ public class ProduitPerissable extends Produit {
 
     LocalDate datLimiteConso;
 
-    public ProduitPerissable() {
-        super();
-    }
-
-    public ProduitPerissable(long refProd, String libelle, String marque, float prixUnitaire, long qteStock, LocalDate datLimiteConso) {
-        super(refProd, libelle, marque, prixUnitaire, qteStock);
+    public ProduitPerissable(LocalDate datLimiteConso) {
         this.datLimiteConso = datLimiteConso;
     }
 
-    public ProduitPerissable(String libelle, String marque, float prixUnitaire, long qteStock, LocalDate datLimiteConso) {
-        super(libelle, marque, prixUnitaire, qteStock);
+    public ProduitPerissable(long refProd, LocalDate datLimiteConso, String marque, String libelle, long qteStock, float prixUnitaire ) {
+        super(refProd, marque, libelle, qteStock, prixUnitaire);
+        this.datLimiteConso = datLimiteConso;
+    }
+
+    public ProduitPerissable( LocalDate datLimiteConso, String marque, String libelle, long qteStock, float prixUnitaire) {
+        super(marque, libelle, qteStock, prixUnitaire);
         this.datLimiteConso = datLimiteConso;
     }
 

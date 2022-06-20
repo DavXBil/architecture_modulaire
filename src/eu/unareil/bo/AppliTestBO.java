@@ -37,7 +37,7 @@ public class AppliTestBO {
 			List<Auteur> lesAuteursDeLaCarte = new ArrayList<>();
 			lesAuteursDeLaCarte.add(new Auteur("André","Dussoliuer"));
 			lesAuteursDeLaCarte.add(new Auteur("Béatrice","Barbante"));
-			CartePostale uneCarte = new CartePostale("Carte Sud Bretagne","La mine d'Or", 10000, 0.80f,lesAuteursDeLaCarte,TypeCartePostale.Paysage);
+			CartePostale uneCarte = new CartePostale("Carte Sud Bretagne","La mine d'Or", 10000, 0.80f,lesAuteursDeLaCarte, TypeCartePostale.Paysage);
 			System.out.println("\nREM : Affichage d'un produit carte postale");
 			System.out.println(uneCarte.toString());
 			System.out.println("---------------------------------------------------------------");
@@ -61,11 +61,11 @@ public class AppliTestBO {
 			Glace laGlaceCoco=new Glace(LocalDate.of(2020, 2, 12),"Miko","Cône", -18, "Coco", 1000, 2.55f);
 			List<Auteur> lesAuteursDeLaCarteDeux = new ArrayList<>();
 			lesAuteursDeLaCarteDeux.add(new Auteur("Pierre","Degrand"));
-			CartePostale uneDeuxiemeCarte = new CartePostale("Carte Sud Bretagne","Penestin", 10000, 0.80f,lesAuteursDeLaCarteDeux,TypeCartePostale.Paysage);
+			CartePostale uneDeuxiemeCarte = new CartePostale("Carte Sud Bretagne","Penestin", 10000, 0.80f,lesAuteursDeLaCarte, TypeCartePostale.Paysage);
 			List<Auteur> lesAuteursDeLaCarteTrois = new ArrayList<>();
 			lesAuteursDeLaCarteTrois.add(new Auteur("Pierre","Degrand"));
 			lesAuteursDeLaCarteTrois.add(new Auteur("Martine","Dubas"));
-			CartePostale uneTroisiemeCarte = new CartePostale("Carte Sud Bretagne","Guérande", 10000, 0.80f,lesAuteursDeLaCarte,TypeCartePostale.Paysage);
+			CartePostale uneTroisiemeCarte = new CartePostale("Carte Sud Bretagne","Guérande", 10000, 0.80f, lesAuteursDeLaCarte, TypeCartePostale.Paysage);
 			Stylo styloABille = new Stylo("Stabilo","Point 88 - la Cerisaie", 10000, 2.50f, "bleu", "Stylo à bille");
 			Stylo styloFeutre1 = new Stylo("Stabilo","Point 88 - la Cerisaie", 10000, 2.50f, "jaune", "feutre");
 			Stylo styloFeutre2 = new Stylo("Stabilo","Point 88 - la Cerisaie", 10000, 2.20f, "rouge", "feutre");

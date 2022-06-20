@@ -3,28 +3,28 @@ package eu.unareil.bo;
 public class Produit {
 
     long refProd;
-    String libelle;
     String marque;
-    float prixUnitaire;
+    String libelle;
     long qteStock;
+    float prixUnitaire;
 
 
     public Produit () {
-        super();
-    }
-    public Produit(long refProd, String libelle, String marque, float prixUnitaire, long qteStock) {
-        this.refProd = refProd;
-        this.libelle = libelle;
-        this.marque = marque;
-        this.prixUnitaire = prixUnitaire;
-        this.qteStock = qteStock;
     }
 
-    public Produit(String libelle, String marque, float prixUnitaire, long qteStock) {
-        this.libelle = libelle;
+    public Produit(long refProd, String marque, String libelle, long qteStock, float prixUnitaire) {
+        this.refProd = refProd;
         this.marque = marque;
-        this.prixUnitaire = prixUnitaire;
+        this.libelle = libelle;
         this.qteStock = qteStock;
+        this.prixUnitaire = prixUnitaire;
+    }
+
+    public Produit(String marque, String libelle, long qteStock, float prixUnitaire) {
+        this.marque = marque;
+        this.libelle = libelle;
+        this.qteStock = qteStock;
+        this.prixUnitaire = prixUnitaire;
     }
 
     public long getRefProd() {
@@ -55,7 +55,7 @@ public class Produit {
         return prixUnitaire;
     }
 
-    public void setPrixUnitaire(float prixUnitaire) {
+    public void setPrixUnitaire(int prixUnitaire) {
         this.prixUnitaire = prixUnitaire;
     }
 
@@ -65,17 +65,5 @@ public class Produit {
 
     public void setQteStock(long qteStock) {
         this.qteStock = qteStock;
-    }
-
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("Produit{");
-        sb.append("refProd=").append(refProd);
-        sb.append(", libelle='").append(libelle).append('\'');
-        sb.append(", marque='").append(marque).append('\'');
-        sb.append(", prixUnitaire=").append(prixUnitaire);
-        sb.append(", qteStock=").append(qteStock);
-        sb.append('}');
-        return sb.toString();
     }
 }

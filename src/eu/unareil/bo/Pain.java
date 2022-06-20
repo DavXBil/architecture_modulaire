@@ -4,40 +4,41 @@ import java.time.LocalDate;
 
 public class Pain extends ProduitPerissable{
 
-    int poids;
+    float poids;
 
-    public Pain() {
-        super();
-    }
-
-    public Pain(long refProd, String libelle, String marque, float prixUnitaire, long qteStock, int poids) {
-        super(refProd, libelle, marque, prixUnitaire, qteStock, LocalDate.now().plusDays(2));
+    public Pain(LocalDate datLimiteConso, float poids) {
+        super(datLimiteConso);
         this.poids = poids;
     }
 
-    public Pain(String libelle, String marque, float prixUnitaire, long qteStock, LocalDate datLimiteConso, int poids) {
-        super(libelle, marque, prixUnitaire, qteStock, LocalDate.now().plusDays(2));
+    public Pain(long refProd, String marque, String libelle, float poids , long qteStock, float prixUnitaire) {
+        super(refProd, LocalDate.now().plusDays(2), marque, libelle, qteStock, prixUnitaire);
         this.poids = poids;
     }
 
-    public int getPoids() {
+    public Pain( String marque, String libelle, float poids, long qteStock, float prixUnitaire) {
+        super( LocalDate.now().plusDays(2), marque, libelle, qteStock, prixUnitaire);
+        this.poids = poids;
+    }
+
+    public float getPoids() {
         return poids;
     }
 
-    public void setPoids(int poids) {
+    public void setPoids(float poids) {
         this.poids = poids;
     }
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Pain{");
-        sb.append("poids=").append(poids);
-        sb.append(", datLimiteConso=").append(datLimiteConso);
-        sb.append(", refProd=").append(refProd);
         sb.append(", libelle='").append(libelle).append('\'');
         sb.append(", marque='").append(marque).append('\'');
         sb.append(", prixUnitaire=").append(prixUnitaire);
         sb.append(", qteStock=").append(qteStock);
+        sb.append(", datLimiteConso=").append(datLimiteConso);
+        sb.append(", refProd=").append(refProd);
+        sb.append("poids=").append(poids);
         sb.append('}');
         return sb.toString();
     }
