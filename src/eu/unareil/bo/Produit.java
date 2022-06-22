@@ -67,4 +67,17 @@ public class Produit {
     public void setQteStock(long qteStock) {
         this.qteStock = qteStock;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Produit{");
+        sb.append("refProd=").append(refProd);
+        sb.append(", marque='").append(marque).append('\'');
+        sb.append(", libelle='").append(libelle).append('\'');
+        sb.append(", qteStock=").append(qteStock);
+        sb.append(", prixUnitaire=").append(prixUnitaire);
+        sb.append('}');
+        return sb.toString();
+    }
+
 }
