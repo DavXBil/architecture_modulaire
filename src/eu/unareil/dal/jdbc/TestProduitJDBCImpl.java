@@ -65,6 +65,18 @@ public class TestProduitJDBCImpl {
             System.out.println(e.getCause());
 
         }
+
+        /*try {
+
+            Produit produit = prodJDBC.selectById(8);
+            System.out.println(produit.toString());
+            prodJDBC.delete(produit);
+
+        } catch (DALException e) {
+
+            System.out.println(e.getCause());
+
+        }*/
     }
 
 }

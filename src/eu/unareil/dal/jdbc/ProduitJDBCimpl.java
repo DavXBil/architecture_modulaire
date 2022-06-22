@@ -109,7 +109,7 @@ public class ProduitJDBCimpl implements DAO<Produit> {
                     cnx.close();
                 }
             } catch (SQLException e) {
-                //throw new DALException("erreur au niveau du close " + id, e.getCause());
+                throw new DALException("erreur au niveau du close " + id, e.getCause());
             }
         }
     }
@@ -163,15 +163,16 @@ public class ProduitJDBCimpl implements DAO<Produit> {
 
                 switch (type) {
                     case "Glace":
-                        el = new Glace(rs.getDate("dateLimiteConso").toLocalDate(), rs.getString("marque"), rs.getString("libelle"), rs.getInt("temperatureConservation"),  rs.getString("parfum"), rs.getLong("qteStock"), rs.getFloat("prixUnitaire"));
+                                        //long refProd, LocalDate datLimiteConso, String marque, String libelle, long qteStock, float prixUnitaire,  String parfum, int temperatureConservation
+                        el = new Glace(rs.getLong("refProd"), rs.getDate("dateLimiteConso").toLocalDate(), rs.getString("marque"), rs.getString("libelle"), rs.getLong("qteStock"), rs.getFloat("prixUnitaire"),  rs.getString("parfum"), rs.getInt("temperatureConservation"));
                         break;
 
                     case "Stylo":
-                        el = new Stylo(rs.getString("marque"), rs.getString("libelle"), rs.getLong("qteStock"),rs.getFloat("prixUnitaire"), rs.getString("couleur"), rs.getString("typeMine"));
+                        el = new Stylo(rs.getLong("refProd"), rs.getString("marque"), rs.getString("libelle"), rs.getLong("qteStock"),rs.getFloat("prixUnitaire"), rs.getString("couleur"), rs.getString("typeMine"));
                         break;
 
                     case "Pain":
-                        el = new Pain(rs.getString("marque"), rs.getString("libelle"), rs.getFloat("poids"), rs.getLong("qteStock"), rs.getFloat("prixUnitaire"));
+                        el = new Pain(rs.getLong("refProd"), rs.getString("marque"), rs.getString("libelle"), rs.getFloat("poids"), rs.getLong("qteStock"), rs.getFloat("prixUnitaire"));
                         break;
                 }
             }
@@ -200,7 +201,7 @@ public class ProduitJDBCimpl implements DAO<Produit> {
         Statement stmt = null;
         ResultSet rs = null;
         List<Produit> lesProduits = new ArrayList<>();
-        Produit el = null;
+        Produit produit = null;
         //Connection cnx=null;
         Connection cnx = JDBCTools.getConnection();
         try {
@@ -208,11 +209,14 @@ public class ProduitJDBCimpl implements DAO<Produit> {
             rs = stmt.executeQuery(SQL_SELECT_ALL);
             while (rs.next()) {
                 if (rs instanceof Stylo) {
-                    el = new Stylo(rs.getLong(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getFloat(5),rs.getString(6),rs.getString(7));
+                                        //ong refProd, String marque, String libelle, long qteStock, float prixUnitaire, String couleur, String typeMine
+                    produit = new Stylo(rs.getLong(1),rs.getString(2),rs.getString(3),rs.getLong(4),rs.getFloat(5),rs.getString(6),rs.getString(7));
                 } else if (rs instanceof Glace) {
-                    el = new Glace(rs.getLong(1),Date.valueOf(rs.getString(7)).toLocalDate() ,rs.getString(2),rs.getString(3),rs.getLong(11),rs.getFloat(6),rs.getString(7),rs.getInt(8));
+                                        //long refProd, LocalDate datLimiteConso, String marque, String libelle, long qteStock, float prixUnitaire,  String parfum, int temperatureConservation
+                    produit = new Glace(rs.getLong(1),Date.valueOf(rs.getString(7)).toLocalDate() ,rs.getString(2),rs.getString(3),rs.getLong(11),rs.getFloat(6),rs.getString(7),rs.getInt(8));
                 } else if (rs instanceof Pain) {
-                    el = new Pain(rs.getLong(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getLong(5),rs.getFloat(6));
+                                        //long refProd, String marque, String libelle, float poids , long qteStock, float prixUnitaire
+                    produit = new Pain(rs.getLong(1),rs.getString(2),rs.getString(3),rs.getFloat(4),rs.getLong(5),rs.getFloat(6));
                 } else if (rs instanceof CartePostale) {
                     PreparedStatement postalStmt = cnx.prepareStatement(SQL_SELECT_AUTEUR_CARTEPOSTALE);
                     postalStmt.setLong(1, rs.getLong(1));
@@ -224,9 +228,10 @@ public class ProduitJDBCimpl implements DAO<Produit> {
                     while (postalRSet.next()) {
                         auteurs.add(auteurJDBC.selectById(postalRSet.getLong(1)));
                     }
-                    CartePostale cartePostale = new CartePostale(rs.getLong(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getLong(5),auteurs,TypeCartePostale.valueOf(rs.getString(7)));
+                                                                //long refProd, String marque, String libelle, long qteStock, float prixUnitaire, List<Auteur> auteurs, TypeCartePostale typeCartePostale
+                    CartePostale cartePostale = new CartePostale(rs.getLong(1),rs.getString(2),rs.getString(3),rs.getLong(4),rs.getFloat(5),auteurs,TypeCartePostale.valueOf(rs.getString(7)));
                 }
-                lesProduits.add(el);
+                lesProduits.add(produit);
             }
 
         } catch (SQLException e) {
