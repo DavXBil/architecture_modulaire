@@ -1,6 +1,6 @@
 package eu.unareil.dal.jdbc;
 
-import eu.unareil.bo.Produit;
+import eu.unareil.bo.*;
 import eu.unareil.dal.DALException;
 import eu.unareil.dal.DAO;
 
@@ -10,24 +10,64 @@ import java.util.List;
 
 public class ProduitJDBCimpl implements DAO<Produit> {
 
-    private static final String SQL_INSERT="insert into elements_chimiques (elNom, elSymbole, elNumAtomique, elMasseAtomique values(?,?,?,?)";
-    private static final String SQL_UPDATE="update elements_chimiques set elNom=?, elSymbole=?, elNumAtomique=?, elMasseAtomique=? where elId=?";
-    private static final String SQL_DELETE="delete from elements_chimiques where elId=?";
-    private static final String SQL_SELECT_ALL="select * from elements_chimiques";
-    private static final String SQL_SELECT_BY_ID="select * from elements_chimiques where elId=?";
+    private static final String SQL_INSERT="insert into produit (libelle, marque, prixUnitaire, qteStock, type, dateLimiteConso, poids, parfum, temperatureConservation, couleur, typeMine, typeCartePostale) values(?,?,?,?,?,?,?,?,?,?,?,?)";
+    private static final String SQL_UPDATE="update produit set libelle=?, marque=?, prixUnitaire=?, qteStock=?, type=?, dateLimiteConso=?, poids=?, parfum=?, temperatureConservation=?, couleur=?, typeMine=?, typeCartePostale=? where id=?";
+    private static final String SQL_DELETE="delete from produit where id=?";
+    private static final String SQL_SELECT_ALL="select * from produit";
+    private static final String SQL_SELECT_BY_ID="select * from produit where id=?";
 
 
     @Override
     public void insert(Produit data) throws DALException {
+
         try (Connection connection = JDBCTools.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT)) {
-               /* preparedStatement.setString(1, data.getNom());
-                preparedStatement.setString(2, data.getSymbole());
-                preparedStatement.setInt(3, data.getNumAtomique());
-                preparedStatement.setFloat(4, data.getMasseAtomique());
-                preparedStatement.executeUpdate();*/
+                preparedStatement.setString(1, data.getLibelle());
+                preparedStatement.setString(2, data.getMarque());
+                preparedStatement.setFloat(3, data.getPrixUnitaire());
+                preparedStatement.setFloat(4, data.getQteStock());
+
+                if (data instanceof Stylo) {
+
+                    preparedStatement.setString(5, "Stylo");
+                    preparedStatement.setDate(6, null);
+                    preparedStatement.setNull(7, Types.FLOAT);
+                    preparedStatement.setString(8, null);
+                    preparedStatement.setNull(9, Types.INTEGER);
+                    preparedStatement.setString(10, ((Stylo) data).getCouleur());
+                    preparedStatement.setString(11, ((Stylo) data).getTypeMine());
+                    preparedStatement.setString(12, null);
+
+                } else if (data instanceof Pain) {
+
+                    preparedStatement.setString(5, "Pain");
+                    preparedStatement.setDate(6, Date.valueOf(((Pain) data).getDatLimiteConso()));
+                    preparedStatement.setFloat(7, ((Pain) data).getPoids());
+                    preparedStatement.setString(8, null);
+                    preparedStatement.setNull(9, Types.INTEGER);
+                    preparedStatement.setString(10, null);
+                    preparedStatement.setString(11, null);
+                    preparedStatement.setString(12, null);
+
+                } else if (data instanceof Glace) {
+
+                    preparedStatement.setString(5, "Glace");
+                    preparedStatement.setDate(6, null);
+                    preparedStatement.setNull(7, Types.FLOAT);
+                    preparedStatement.setString(8, ((Glace) data).getParfum());
+                    preparedStatement.setInt(9, ((Glace) data).getTemperatureConservation());
+                    preparedStatement.setString(10, null);
+                    preparedStatement.setString(11, null);
+                    preparedStatement.setString(12, null);
+
+                }
+
+            preparedStatement.executeUpdate();
+
         } catch (SQLException e) {
+
             throw new DALException("Erreur lors de l'insertion d'un élément chimique", e);
+
         }
     }
 
@@ -35,14 +75,14 @@ public class ProduitJDBCimpl implements DAO<Produit> {
     public void delete (Produit data) throws DALException {
         PreparedStatement pstmt = null;
         Connection cnx=null;
-        //long id=data.getId();
+        long id = data.getRefProd();
         cnx = JDBCTools.getConnection();
         try {
             pstmt = cnx.prepareStatement(SQL_DELETE);
-           // pstmt.setLong(1, id);
+            pstmt.setLong(1, id);
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            //throw new DALException("erreur du delete -id= " + id, e.getCause());
+            throw new DALException("erreur du delete -id= " + id, e.getCause());
         }
         finally {
             try {

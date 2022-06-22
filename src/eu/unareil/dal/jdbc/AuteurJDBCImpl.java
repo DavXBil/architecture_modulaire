@@ -1,10 +1,8 @@
 package eu.unareil.dal.jdbc;
 
 import eu.unareil.bo.Auteur;
-import eu.unareil.bo.Produit;
 import eu.unareil.dal.DALException;
 import eu.unareil.dal.DAO;
-import eu.unareil.dal.jdbc.JDBCTools;
 
 import java.sql.*;
 import java.util.ArrayList;

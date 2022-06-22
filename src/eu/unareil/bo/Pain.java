@@ -31,6 +31,8 @@ public class Pain extends ProduitPerissable{
         this.poids = poids;
     }
 
+
+
     @Override
     public String toString() {
 
