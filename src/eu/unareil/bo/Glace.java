@@ -58,7 +58,7 @@ public class Glace extends ProduitPerissable{
         sb.append(", qteStock=").append(this.getQteStock());
         sb.append(", datLimiteConso=").append(this.getDatLimiteConso().format(formDate));
         sb.append(", parfum='").append(this.getParfum()).append('\'');
-        sb.append(", temperatureConservation=").append(this.getTemperatureConservation());
+        sb.append(", temperatureConservation=").append(this.getTemperatureConservation()).append("°");
         sb.append('}');
         return sb.toString();
     }
